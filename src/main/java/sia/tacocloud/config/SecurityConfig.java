@@ -47,11 +47,8 @@ public class SecurityConfig {
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-//                        .successForwardUrl("/design")
-                        .permitAll()
-                )
-                .formLogin(form -> form
                         .successForwardUrl("/design")
+                        .permitAll()
                 )
                 .logout((logout) -> logout.logoutSuccessUrl("/"))
                 .httpBasic(Customizer.withDefaults());
