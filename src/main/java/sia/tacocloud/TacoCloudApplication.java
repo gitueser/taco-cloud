@@ -4,8 +4,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import sia.tacocloud.data.UserRepository;
 import sia.tacocloud.entity.Ingredient;
 import sia.tacocloud.data.IngredientRepository;
+import sia.tacocloud.entity.User;
 
 @SpringBootApplication
 public class TacoCloudApplication {
@@ -27,6 +30,15 @@ public class TacoCloudApplication {
 			repo.save(new Ingredient("JACK", "Monterrey Jack", Ingredient.Type.CHEESE));
 			repo.save(new Ingredient("SLSA", "Salsa", Ingredient.Type.SAUCE));
 			repo.save(new Ingredient("SRCR", "Sour Cream", Ingredient.Type.SAUCE));
+		};
+	}
+
+	@Bean
+	public CommandLineRunner defaultUserDataLoader(UserRepository userRepo) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		return args -> {
+			userRepo.deleteAll(); // TODO: Quick hack to avoid tests from stepping on each other with constraint violations
+			userRepo.save(new User(1L, "buzz", passwordEncoder.encode("pass"), "", "", "", "", "", ""));
 		};
 	}
 
