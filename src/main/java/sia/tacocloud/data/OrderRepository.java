@@ -1,7 +1,7 @@
 package sia.tacocloud.data;
 
 import org.springframework.data.repository.CrudRepository;
-import sia.tacocloud.TacoOrder;
+import sia.tacocloud.entity.TacoOrder;
 
 import java.util.Date;
 import java.util.List;

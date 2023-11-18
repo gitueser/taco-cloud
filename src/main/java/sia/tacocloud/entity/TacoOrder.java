@@ -1,4 +1,4 @@
-package sia.tacocloud;
+package sia.tacocloud.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Digits;
