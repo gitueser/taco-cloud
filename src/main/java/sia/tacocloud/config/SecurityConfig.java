@@ -2,15 +2,14 @@ package sia.tacocloud.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import sia.tacocloud.entity.User;
 import sia.tacocloud.data.UserRepository;
+import sia.tacocloud.entity.User;
 
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
