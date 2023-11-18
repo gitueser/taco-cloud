@@ -39,7 +39,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authz) -> authz
                         .requestMatchers(antMatcher("/design")).hasRole("USER")
                         .requestMatchers(antMatcher("/orders")).hasRole("USER")
-//                        .requestMatchers("/", "/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
