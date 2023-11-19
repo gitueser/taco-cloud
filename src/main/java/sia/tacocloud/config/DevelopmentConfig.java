@@ -16,7 +16,7 @@ public class DevelopmentConfig {
     @Bean
     public CommandLineRunner dataLoader(IngredientRepository repo) {
         return args -> {
-            repo.deleteAll(); // TODO: Quick hack to avoid tests from stepping on each other with constraint violations
+            repo.deleteAll();
             repo.save(new Ingredient("FLTO", "Flour Tortilla", Ingredient.Type.WRAP));
             repo.save(new Ingredient("COTO", "Corn Tortilla", Ingredient.Type.WRAP));
             repo.save(new Ingredient("GRBF", "Ground Beef", Ingredient.Type.PROTEIN));
@@ -34,7 +34,7 @@ public class DevelopmentConfig {
     public CommandLineRunner defaultUserDataLoader(UserRepository userRepo) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         return args -> {
-            userRepo.deleteAll(); // TODO: Quick hack to avoid tests from stepping on each other with constraint violations
+            userRepo.deleteAll();
             userRepo.save(new User(
                     "user", passwordEncoder.encode("ppp"),
                     "fullname", "street", "city", "CA", "zip", "123456789"));
