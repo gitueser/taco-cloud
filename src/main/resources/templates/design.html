@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Taco Cloud</title>
-    <link rel="stylesheet" th:href="@{/styles.css}" />
-</head>
+    <head>
+        <title>Taco Cloud</title>
+        <link rel="stylesheet" th:href="@{/styles.css}" />
+    </head>
+
+    <header>
+        <form method="POST" th:action="@{/logout}">
+            <input class="logout-btn" type="submit" value="Logout"/>
+        </form>
+    </header>
+
     <body>
         <h1>Design your taco!</h1>
         <img width="80" height="80" th:src="@{/images/TacoCloud.png}"/>
 
-        <form method="POST" th:object="${taco}">
+        <form method="POST" th:object="${taco}" th:action="@{/design}" id="tacoForm">
 
                 <span class="validationError"
                       th:if="${#fields.hasErrors('ingredients')}"

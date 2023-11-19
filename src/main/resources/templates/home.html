@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Taco Cloud</title>
-</head>
-<body>
-    <h1>Welcome to...</h1>
-    <img width="80" height="80" th:src="@{/images/TacoCloud.png}"/>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Taco Cloud</title>
+    </head>
+
+    <header>
+        <form method="POST" th:action="@{/logout}">
+            <input class="logout-btn" type="submit" value="Logout"/>
+        </form>
+    </header>
+
+    <body>
+        <h1>Welcome to...</h1>
+        <img width="80" height="80" th:src="@{/images/TacoCloud.png}"/>
+    </body>
 </html>

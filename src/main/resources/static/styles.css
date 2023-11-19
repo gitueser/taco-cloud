@@ -12,6 +12,10 @@ div.ingredient-group {
 	width: 50%;
 }
 
+input.logout-btn {
+	float: right;
+}
+
 .grid:after {
   content: "";
   display: table;

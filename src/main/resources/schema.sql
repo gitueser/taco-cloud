@@ -19,6 +19,18 @@ create table if not exists Taco (
   created_at timestamp not null
 );
 
+create table if not exists Users (
+  id identity,
+  username varchar(50) not null,
+  password varchar(50) not null,
+  fullname varchar(50) not null,
+  street varchar(50) not null,
+  city varchar(50) not null,
+  state varchar(50) not null,
+  zip varchar(50) not null,
+  phone_Number varchar(50) not null
+);
+
 create table if not exists Ingredient_Ref (
   id identity,
   ingredient varchar(4) not null,
