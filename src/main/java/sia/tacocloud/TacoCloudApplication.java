@@ -38,7 +38,9 @@ public class TacoCloudApplication {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		return args -> {
 			userRepo.deleteAll(); // TODO: Quick hack to avoid tests from stepping on each other with constraint violations
-			userRepo.save(new User(1L, "buzz", passwordEncoder.encode("pass"), "", "", "", "", "", ""));
+			userRepo.save(new User(
+					"user", passwordEncoder.encode("ppp"),
+					"fullname", "street", "city", "CA", "zip", "123456789"));
 		};
 	}
 
