@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.client.RestTemplate;
 import sia.tacocloud.data.IngredientRepository;
 import sia.tacocloud.data.TacoRepository;
 import sia.tacocloud.data.UserRepository;
@@ -23,7 +24,8 @@ public class DevelopmentConfig {
             IngredientRepository ingredientRepo,
             TacoRepository tacoRepo,
             UserRepository userRepo,
-            BCryptPasswordEncoder passwordEncoder) {
+            BCryptPasswordEncoder passwordEncoder,
+            RestTemplate restTemplate) {
         return args -> {
             userRepo.deleteAll();
             tacoRepo.deleteAll();
