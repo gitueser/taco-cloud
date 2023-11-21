@@ -12,7 +12,6 @@ import sia.tacocloud.entity.Taco;
 import java.util.Optional;
 
 @RestController
-//@RequestMapping("/api/tacos")
 @RequestMapping(path = "/api/tacos", produces = "application/json")
 @CrossOrigin(origins = "http://tacocloud:8080")
 public class TacoController {
@@ -23,8 +22,7 @@ public class TacoController {
         this.tacoRepo = tacoRepo;
     }
 
-    //    @GetMapping(params = "recent")
-    @GetMapping("/recent")
+    @GetMapping(params = "recent")
     public Iterable<Taco> recentTacos() {
         System.out.println("DASFSDG");
         PageRequest page = PageRequest.of(0, 12, Sort.by("createdAt").descending());
