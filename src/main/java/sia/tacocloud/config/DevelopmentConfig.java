@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.client.RestTemplate;
 import sia.tacocloud.data.IngredientRepository;
 import sia.tacocloud.data.TacoRepository;
 import sia.tacocloud.data.UserRepository;
@@ -24,8 +23,7 @@ public class DevelopmentConfig {
             IngredientRepository ingredientRepo,
             TacoRepository tacoRepo,
             UserRepository userRepo,
-            BCryptPasswordEncoder passwordEncoder,
-            RestTemplate restTemplate) {
+            BCryptPasswordEncoder passwordEncoder) {
         return args -> {
             userRepo.deleteAll();
             tacoRepo.deleteAll();
@@ -69,15 +67,11 @@ public class DevelopmentConfig {
     private static void initTacos(IngredientRepository ingredientRepo, TacoRepository tacoRepo) {
         ingredientRepo.findById("FLTO")
                 .map(Ingredient::getId)
-                .ifPresent(ingredientId -> {
-                    initTaco("tacoFLTO", tacoRepo, ingredientId);
-                });
+                .ifPresent(ingredientId -> initTaco("tacoFLTO", tacoRepo, ingredientId));
 
         ingredientRepo.findById("COTO")
                 .map(Ingredient::getId)
-                .ifPresent(ingredientId -> {
-                    initTaco("tacoCOTO", tacoRepo, ingredientId);
-                });
+                .ifPresent(ingredientId -> initTaco("tacoCOTO", tacoRepo, ingredientId));
     }
 
     private static void initTaco(String tacoName, TacoRepository tacoRepo, String ingredientId) {
