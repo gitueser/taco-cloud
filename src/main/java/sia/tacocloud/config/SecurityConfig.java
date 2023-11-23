@@ -1,7 +1,9 @@
 package sia.tacocloud.config;
 
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -43,8 +45,13 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authz) -> authz
                         .requestMatchers(antMatcher("/design")).hasRole("USER")
                         .requestMatchers(antMatcher("/orders")).hasRole("USER")
+                        .requestMatchers(antMatcher(HttpMethod.POST, "/api/ingredients"))
+                        .hasAnyAuthority("SCOPE_writeIngredients")
+                        .requestMatchers(antMatcher(HttpMethod.DELETE, "/api/ingredients"))
+                        .hasAnyAuthority("SCOPE_deleteIngredients")
                         .anyRequest().authenticated()
                 )
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
                 .formLogin(form -> form
                         .loginPage("/login")
                         .defaultSuccessUrl("/design", true)
