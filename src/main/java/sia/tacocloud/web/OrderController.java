@@ -2,6 +2,8 @@ package sia.tacocloud.web;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -28,7 +30,10 @@ public class OrderController {
     private final OrderProps orderProps;
     private final OrderMessagingService messageService;
 
-    public OrderController(OrderRepository orderRepo, OrderProps orderProps, OrderMessagingService messageService) {
+    @Autowired
+    public OrderController(OrderRepository orderRepo,
+                           OrderProps orderProps,
+                           @Qualifier("rabbitOrderMessagingService") OrderMessagingService messageService) {
         this.orderRepo = orderRepo;
         this.orderProps = orderProps;
         this.messageService = messageService;

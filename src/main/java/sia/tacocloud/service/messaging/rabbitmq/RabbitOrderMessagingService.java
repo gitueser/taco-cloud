@@ -6,11 +6,13 @@ import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import sia.tacocloud.entity.TacoOrder;
 import sia.tacocloud.service.messaging.OrderMessagingService;
 
 @Service
+@Qualifier("rabbitOrderMessagingService")
 public class RabbitOrderMessagingService implements OrderMessagingService {
 
     private final RabbitTemplate rabbit;
