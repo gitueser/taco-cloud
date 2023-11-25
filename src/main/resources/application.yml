@@ -5,11 +5,16 @@ spring:
   data:
     rest:
       base-path: /data-api
+#  jms:
+#    template:
+#      default-destination: tacocloud.order.queue
   artemis:
     host: localhost
     port: 61616
     user: tacoweb
     password: l3tm31n
+    embedded:
+      enabled: false
 
 taco:
   orders:

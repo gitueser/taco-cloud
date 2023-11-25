@@ -8,27 +8,30 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import sia.tacocloud.data.OrderRepository;
 import sia.tacocloud.entity.TacoOrder;
 import sia.tacocloud.entity.User;
+import sia.tacocloud.service.jms.artemis.OrderMessagingService;
 
 
 @Slf4j
 @Controller
+//@RestController
 @RequestMapping("/orders")
+//@RequestMapping(path="/orders", produces="application/json")
+@CrossOrigin(origins = "http://localhost:8080")
 @SessionAttributes("tacoOrder")
 public class OrderController {
     private final OrderRepository orderRepo;
     private final OrderProps orderProps;
+    private final OrderMessagingService messageService;
 
-    public OrderController(OrderRepository orderRepo, OrderProps orderProps) {
+    public OrderController(OrderRepository orderRepo, OrderProps orderProps, OrderMessagingService messageService) {
         this.orderRepo = orderRepo;
         this.orderProps = orderProps;
+        this.messageService = messageService;
     }
 
     @GetMapping
@@ -56,6 +59,8 @@ public class OrderController {
         order.setUser(user);
         orderRepo.save(order);
         sessionStatus.setComplete();
+        log.info("Processing order message to artemis: {}", order);
+        messageService.sendOrder(order);
         return "redirect:/";
     }
 }
