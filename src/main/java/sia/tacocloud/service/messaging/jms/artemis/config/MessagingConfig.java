@@ -1,4 +1,4 @@
-package sia.tacocloud.service.jms.artemis.config;
+package sia.tacocloud.service.messaging.jms.artemis.config;
 
 import jakarta.jms.Destination;
 import org.apache.activemq.artemis.jms.client.ActiveMQQueue;
