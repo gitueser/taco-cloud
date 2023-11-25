@@ -1,11 +1,11 @@
-package sia.tacocloud.service.messaging.jms.artemis.impl;
+package sia.tacocloud.service.messaging.jms.artemis;
 
 import jakarta.jms.Destination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 import sia.tacocloud.entity.TacoOrder;
-import sia.tacocloud.service.messaging.jms.artemis.OrderMessagingService;
+import sia.tacocloud.service.messaging.OrderMessagingService;
 
 @Service
 public class JmsOrderMessagingService implements OrderMessagingService {

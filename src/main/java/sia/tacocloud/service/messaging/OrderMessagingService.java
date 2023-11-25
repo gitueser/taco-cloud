@@ -1,4 +1,4 @@
-package sia.tacocloud.service.messaging.jms.artemis;
+package sia.tacocloud.service.messaging;
 
 import sia.tacocloud.entity.TacoOrder;
 

@@ -13,7 +13,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import sia.tacocloud.data.OrderRepository;
 import sia.tacocloud.entity.TacoOrder;
 import sia.tacocloud.entity.User;
-import sia.tacocloud.service.messaging.jms.artemis.OrderMessagingService;
+import sia.tacocloud.service.messaging.OrderMessagingService;
 
 
 @Slf4j
