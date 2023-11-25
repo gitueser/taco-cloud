@@ -21,9 +21,6 @@ public class RabbitOrderMessagingService implements OrderMessagingService {
 
     @Override
     public void sendOrder(TacoOrder order) {
-        MessageConverter converter = rabbit.getMessageConverter();
-        MessageProperties props = new MessageProperties();
-        Message message = converter.toMessage(order, props);
-        rabbit.send("tacocloud.order", message);
+        rabbit.convertAndSend("tacocloud.order", order);
     }
 }
