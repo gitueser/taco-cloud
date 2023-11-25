@@ -15,7 +15,7 @@ import java.util.Map;
 public class MessagingConfig {
 
     @Bean
-    public MappingJackson2MessageConverter messageConverterJms() {
+    public MappingJackson2MessageConverter jmsMessageConverter() {
         MappingJackson2MessageConverter messageConverter = new MappingJackson2MessageConverter();
         messageConverter.setTypeIdPropertyName("_typeId");
 
@@ -27,7 +27,7 @@ public class MessagingConfig {
     }
 
     @Bean
-    public Jackson2JsonMessageConverter messageConverterRabbitMQ() {
+    public Jackson2JsonMessageConverter rabbitMQMessageConverter() {
         return new Jackson2JsonMessageConverter();
     }
 
