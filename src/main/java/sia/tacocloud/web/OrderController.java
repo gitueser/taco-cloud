@@ -64,7 +64,7 @@ public class OrderController {
         order.setUser(user);
         orderRepo.save(order);
         sessionStatus.setComplete();
-        log.info("Processing order message to artemis: {}", order);
+        log.info("Processing order message to broker: {}", order);
         messageService.sendOrder(order);
         return "redirect:/";
     }
