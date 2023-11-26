@@ -18,7 +18,7 @@ public class MessagingConfig {
         MappingJackson2MessageConverter messageConverter = new MappingJackson2MessageConverter();
         messageConverter.setTypeIdPropertyName("_typeId");
 
-        Map<String, Class<?>> typeIdMappings = new HashMap<String, Class<?>>();
+        Map<String, Class<?>> typeIdMappings = new HashMap<>();
         typeIdMappings.put("order", TacoOrder.class);
         messageConverter.setTypeIdMappings(typeIdMappings);
 
