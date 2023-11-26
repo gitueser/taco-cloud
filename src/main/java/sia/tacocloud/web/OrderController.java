@@ -2,6 +2,8 @@ package sia.tacocloud.web;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -13,7 +15,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import sia.tacocloud.data.OrderRepository;
 import sia.tacocloud.entity.TacoOrder;
 import sia.tacocloud.entity.User;
-import sia.tacocloud.service.messaging.jms.artemis.OrderMessagingService;
+import sia.tacocloud.service.messaging.OrderMessagingService;
 
 
 @Slf4j
@@ -28,7 +30,10 @@ public class OrderController {
     private final OrderProps orderProps;
     private final OrderMessagingService messageService;
 
-    public OrderController(OrderRepository orderRepo, OrderProps orderProps, OrderMessagingService messageService) {
+    @Autowired
+    public OrderController(OrderRepository orderRepo,
+                           OrderProps orderProps,
+                           @Qualifier("rabbitOrderMessagingService") OrderMessagingService messageService) {
         this.orderRepo = orderRepo;
         this.orderProps = orderProps;
         this.messageService = messageService;
@@ -59,7 +64,7 @@ public class OrderController {
         order.setUser(user);
         orderRepo.save(order);
         sessionStatus.setComplete();
-        log.info("Processing order message to artemis: {}", order);
+        log.info("Processing order message to broker: {}", order);
         messageService.sendOrder(order);
         return "redirect:/";
     }
