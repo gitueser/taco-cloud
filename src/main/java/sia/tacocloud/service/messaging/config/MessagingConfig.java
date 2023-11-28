@@ -27,12 +27,12 @@ public class MessagingConfig {
     }
 
     @Bean
-    public Jackson2JsonMessageConverter rabbitMQMessageConverter() {
-        return new Jackson2JsonMessageConverter();
+    public Destination orderQueue() {
+        return new ActiveMQQueue("tacocloud.order.queue");
     }
 
     @Bean
-    public Destination orderQueue() {
-        return new ActiveMQQueue("tacocloud.order.queue");
+    public Jackson2JsonMessageConverter rabbitMQMessageConverter() {
+        return new Jackson2JsonMessageConverter();
     }
 }

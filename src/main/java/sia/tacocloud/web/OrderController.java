@@ -33,7 +33,7 @@ public class OrderController {
     @Autowired
     public OrderController(OrderRepository orderRepo,
                            OrderProps orderProps,
-                           @Qualifier("rabbitOrderMessagingService") OrderMessagingService messageService) {
+                           @Qualifier("kafkaOrderMessagingService") OrderMessagingService messageService) {
         this.orderRepo = orderRepo;
         this.orderProps = orderProps;
         this.messageService = messageService;
