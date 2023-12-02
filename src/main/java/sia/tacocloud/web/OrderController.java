@@ -32,17 +32,13 @@ public class OrderController {
     private final OrderProps orderProps;
     private final OrderMessagingService messageService;
 
-    private final TacoOrderMapper tacoOrderMapper;
-
     @Autowired
     public OrderController(OrderRepository orderRepo,
                            OrderProps orderProps,
-                           @Qualifier("kafkaOrderMessagingService") OrderMessagingService messageService,
-                           TacoOrderMapper tacoOrderMapper) {
+                           @Qualifier("kafkaOrderMessagingService") OrderMessagingService messageService) {
         this.orderRepo = orderRepo;
         this.orderProps = orderProps;
         this.messageService = messageService;
-        this.tacoOrderMapper = tacoOrderMapper;
     }
 
     @GetMapping
@@ -71,7 +67,7 @@ public class OrderController {
         orderRepo.save(order);
         sessionStatus.setComplete();
         log.info("Processing order message to broker: {}", order);
-        TacoOrderDto tacoOrderDto = tacoOrderMapper.mapToDto(order);
+        TacoOrderDto tacoOrderDto = TacoOrderMapper.INSTANCE.mapToDto(order);
         messageService.sendOrder(tacoOrderDto);
         return "redirect:/";
     }

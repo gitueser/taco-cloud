@@ -11,7 +11,7 @@ import sia.tacocloud.entity.TacoOrder;
 import java.util.List;
 
 @Service
-public class TacoOrderMapperImpl implements TacoOrderMapper {
+public class CustomTacoOrderMapperImpl implements CustomTacoOrderMapper {
     @Override
     public TacoOrderDto mapToDto(TacoOrder order) {
         TacoOrderDto orderDto = new TacoOrderDto();
