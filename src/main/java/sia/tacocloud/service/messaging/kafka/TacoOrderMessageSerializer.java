@@ -13,7 +13,7 @@ public class TacoOrderMessageSerializer implements Serializer<TacoOrderDto> {
 
     @Override
     public void configure(Map<String, ?> configs, boolean isKey) {
-//        Serializer.super.configure(configs, isKey);
+        Serializer.super.configure(configs, isKey);
     }
 
     @Override
@@ -31,6 +31,6 @@ public class TacoOrderMessageSerializer implements Serializer<TacoOrderDto> {
 
     @Override
     public void close() {
-//        Serializer.super.close();
+        Serializer.super.close();
     }
 }
