@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
-import sia.tacocloud.entity.TacoOrder;
+import sia.tacocloud.dto.TacoOrderDto;
 import sia.tacocloud.service.messaging.OrderMessagingService;
 
 @Service
@@ -22,7 +22,7 @@ public class JmsOrderMessagingService implements OrderMessagingService {
     }
 
     @Override
-    public void sendOrder(TacoOrder order) {
+    public void sendOrder(TacoOrderDto order) {
         jms.convertAndSend(orderQueue, order, message -> {
             message.setStringProperty("X_ORDER_SOURCE", "WEB");
             return message;

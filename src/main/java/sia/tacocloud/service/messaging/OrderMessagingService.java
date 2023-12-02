@@ -1,7 +1,7 @@
 package sia.tacocloud.service.messaging;
 
-import sia.tacocloud.entity.TacoOrder;
+import sia.tacocloud.dto.TacoOrderDto;
 
 public interface OrderMessagingService {
-    void sendOrder(TacoOrder order);
+    void sendOrder(TacoOrderDto order);
 }

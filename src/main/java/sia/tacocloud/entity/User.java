@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PRIVATE, force = true)
 @RequiredArgsConstructor
+@Builder
 public class User implements UserDetails {
     private static final long serialVersionUID = 1L;
 

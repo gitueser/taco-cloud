@@ -13,8 +13,10 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import sia.tacocloud.data.OrderRepository;
+import sia.tacocloud.dto.TacoOrderDto;
 import sia.tacocloud.entity.TacoOrder;
 import sia.tacocloud.entity.User;
+import sia.tacocloud.service.mapper.TacoOrderMapper;
 import sia.tacocloud.service.messaging.OrderMessagingService;
 
 
@@ -33,7 +35,7 @@ public class OrderController {
     @Autowired
     public OrderController(OrderRepository orderRepo,
                            OrderProps orderProps,
-                           @Qualifier("rabbitOrderMessagingService") OrderMessagingService messageService) {
+                           @Qualifier("kafkaOrderMessagingService") OrderMessagingService messageService) {
         this.orderRepo = orderRepo;
         this.orderProps = orderProps;
         this.messageService = messageService;
@@ -65,7 +67,8 @@ public class OrderController {
         orderRepo.save(order);
         sessionStatus.setComplete();
         log.info("Processing order message to broker: {}", order);
-        messageService.sendOrder(order);
+        TacoOrderDto tacoOrderDto = TacoOrderMapper.INSTANCE.mapToDto(order);
+        messageService.sendOrder(tacoOrderDto);
         return "redirect:/";
     }
 }
