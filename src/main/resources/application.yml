@@ -16,16 +16,6 @@ spring:
     embedded:
       enabled: false
 
-  kafka:
-    template:
-      default-topic: tacocloud.orders.topic
-    producer:
-      bootstrap-servers: localhost:9092
-#      keySerializer: org.springframework.kafka.support.serializer.JsonSerializer
-#      valueSerializer: org.springframework.kafka.support.serializer.JsonSerializer
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-
 taco:
   orders:
     pageSize: 10

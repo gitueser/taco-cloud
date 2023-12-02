@@ -8,6 +8,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import sia.tacocloud.dto.TacoOrderDto;
 import sia.tacocloud.entity.TacoOrder;
 import sia.tacocloud.service.messaging.OrderMessagingService;
 
@@ -32,5 +33,10 @@ public class RabbitOrderMessagingService implements OrderMessagingService {
                 return message;
             }
         });
+    }
+
+    @Override
+    public void sendOrder(TacoOrderDto order) {
+
     }
 }
