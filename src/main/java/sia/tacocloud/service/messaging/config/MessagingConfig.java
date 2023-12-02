@@ -13,7 +13,6 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import sia.tacocloud.dto.TacoOrderDto;
-import sia.tacocloud.entity.TacoOrder;
 import sia.tacocloud.service.messaging.kafka.TacoOrderMessageSerializer;
 
 import java.util.HashMap;
@@ -30,7 +29,7 @@ public class MessagingConfig {
         messageConverter.setTypeIdPropertyName("_typeId");
 
         Map<String, Class<?>> typeIdMappings = new HashMap<String, Class<?>>();
-        typeIdMappings.put("order", TacoOrder.class);
+        typeIdMappings.put("order", TacoOrderDto.class);
         messageConverter.setTypeIdMappings(typeIdMappings);
 
         return messageConverter;

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import sia.tacocloud.dto.TacoOrderDto;
-import sia.tacocloud.entity.TacoOrder;
 import sia.tacocloud.service.messaging.OrderMessagingService;
 
 @Service
@@ -24,7 +23,7 @@ public class RabbitOrderMessagingService implements OrderMessagingService {
     }
 
     @Override
-    public void sendOrder(TacoOrder order) {
+    public void sendOrder(TacoOrderDto order) {
         rabbit.convertAndSend("MyTestExchange", "tacocloud.order", order, new MessagePostProcessor() {
             @Override
             public Message postProcessMessage(Message message) throws AmqpException {
@@ -33,10 +32,5 @@ public class RabbitOrderMessagingService implements OrderMessagingService {
                 return message;
             }
         });
-    }
-
-    @Override
-    public void sendOrder(TacoOrderDto order) {
-
     }
 }
