@@ -19,7 +19,7 @@
 		<org.projectlombok.version>1.18.30</org.projectlombok.version>
 		<lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
 		<org.springframework.boot.version>3.2.0</org.springframework.boot.version>
-		<artemis.version>3.2.0</artemis.version>
+<!--		<artemis.version>3.1.5</artemis.version>-->
 		<amqp.version>3.2.0</amqp.version>
 		<kafka.version>3.1.0</kafka.version>
 		<org.springframework.boot.validation.version>3.1.5</org.springframework.boot.validation.version>
@@ -35,7 +35,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-artemis</artifactId>
-			<version>${artemis.version}</version>
+<!--			<version>${artemis.version}</version>-->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
